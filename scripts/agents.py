@@ -1,16 +1,21 @@
-import os
+# import os
 from crewai import Agent, LLM
-import dotenv
-from langchain_openai import ChatOpenAI
+# import dotenv
+# from langchain_openai import ChatOpenAI
+
 from custom_tools import list_tables_tool, tables_schema_tool, execute_sql_tool, check_sql_tool
 
-dotenv.load_dotenv()
-openai_api_key = os.getenv("OPENAI_API_KEY", "")
+# dotenv.load_dotenv()
+# openai_api_key = os.getenv("OPENAI_API_KEY", "")
 
 class CustomAgents:
-    def __init__(self):
+    def __init__(self): 
         # self.llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.0)
-        self.llm = "gpt-4o-mini" 
+        # self.llm = "gpt-4o-mini" 
+        self.llm = LLM(
+    model="ollama/qwen3:4b",
+    base_url="http://localhost:11434"
+)
 
     def sql_developer(self):
         return Agent(
