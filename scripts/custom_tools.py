@@ -1,5 +1,6 @@
 import sqlite3
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 from crewai.tools import tool
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.tools.sql_database.tool import (
@@ -86,7 +87,12 @@ def check_sql_tool(sql_query: str):
     """Check if the SQL query is correct and return suggestions/fixes."""
     try:
         db = SQLDatabase.from_uri(f"sqlite:///{DATABASE_FILE}")
-        llm_checker = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.0)
+        # llm_checker = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.0)
+        llm_checker = ChatOllama( 
+    model="qwen3:4b",
+    temperature=0.0,
+    base_url="http://localhost:11434"
+)
         query_checker_tool = QuerySQLCheckerTool(db=db, llm=llm_checker)
         return query_checker_tool.invoke({"query": sql_query})
     except Exception as e:
