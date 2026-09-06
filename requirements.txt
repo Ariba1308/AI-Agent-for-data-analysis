@@ -1,0 +1,9 @@
+streamlit
+pandas
+dotenv
+crewai
+langchain
+langchain_openai
+langchain-community
+statsmodels
+plotly
