@@ -204,23 +204,3 @@ This allows the application to perform AI inference locally without depending on
 The application processes the request through the appropriate CrewAI agents and returns the analysis, report, or visualization.
 
 ---
-
-## Offline Capability
-
-The AI inference pipeline is designed to run locally using Ollama and Qwen3.
-
-Once Ollama, the Qwen3 model, and the required Python dependencies are installed, the application does not require an OpenAI API key for AI inference.
-
-CSV Dataset
-     ↓
-Pandas
-     ↓
-SQLite Database
-     ↓
-CrewAI Agents
-     ↓
-Qwen3 4B (Ollama)
-     ↓
-Analysis / Report / Visualization
-
----
